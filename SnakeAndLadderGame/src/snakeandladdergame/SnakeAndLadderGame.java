@@ -59,33 +59,3 @@ public class SnakeAndLadderGame {
     }
     
 }
-
-/*
-Player Sagar throws dice and dice output is 3 player position is 29
-Player Gourav throws dice and dice output is 6 player position is 54
-Player Sagar throws dice and dice output is 1 player position is 30
-Player Gourav throws dice and dice output is 6 player position is 60
-Player Sagar throws dice and dice output is 5 player position is 35
-Player Gourav throws dice and dice output is 5 player position is 65
-Player Sagar throws dice and dice output is 2 player position is 72
-Player Gourav throws dice and dice output is 1 player position is 66
-Player Sagar throws dice and dice output is 4 player position is 76
-Player Gourav throws dice and dice output is 2 player position is 85
-Player Sagar throws dice and dice output is 1 player position is 77
-Player Gourav throws dice and dice output is 4 player position is 89
-Player Sagar throws dice and dice output is 4 player position is 81
-
-Player Gourav throws dice and dice output is 5 player position is 94
-Player Sagar throws dice and dice output is 4 player position is 85
-
-Player Gourav throws dice and dice output is 6 player position is 119
-Player Sagar throws dice and dice output is 2 player position is 87
-Player Gourav throws dice and dice output is 3 player position is 119
-Player Sagar throws dice and dice output is 2 player position is 89
-Player Gourav throws dice and dice output is 4 player position is 119
-Player Sagar throws dice and dice output is 4 player position is 113
-Player Gourav throws dice and dice output is 5 player position is 119
-Player Sagar throws dice and dice output is 5 player position is 113
-Player Gourav throws dice and dice output is 1 player position is 119
-Player Sagar throws dice and dice output is 1 player position is 113
-*/
