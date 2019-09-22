@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package splitwise;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -106,7 +105,7 @@ public class SplitWiseApp {
     
    public void show()
    {
-       System.out.println("splitwise.SplitWiseApp.show() start "); 
+       System.out.println("splitwise Balance for All Users are "); 
        for(Integer i : userSet.keySet())
        {
            User u = userSet.get(i);
@@ -123,7 +122,7 @@ public class SplitWiseApp {
    
    public void show(int id)
    {
-       System.out.println("splitwise.SplitWiseApp.show(id) start ");
+       System.out.println("splitwise.Balance for user " + userSet.get(id).getName());
            User u = userSet.get(id);
            Balance b = u.getBalance();
            Map<Integer, Double> payMap = b.getPay();
@@ -173,7 +172,7 @@ SHOW
         l1.add(2);
         l1.add(3);
         l1.add(4);
-        app.processEqualInput(1, 1250, l1);
+        app.processEqualInput(1, 1000, l1);
         
         app.show(4);
         app.show(1);
@@ -181,9 +180,9 @@ SHOW
         l1.clear();
         l1.add(2);
         l1.add(3);
-        l2.add(370.0);
+        l2.add(120.0);
         l2.add(880.0);
-        app.processEaxctInput(1, 1250, l1, l2);
+        app.processEaxctInput(1, 1000, l1, l2);
         l1.clear();
         
         app.show();
@@ -193,7 +192,7 @@ SHOW
         l1.add(3);
         l1.add(4);
         l3.add(40);l3.add(20);l3.add(20);l3.add(20);
-        app.processPercentageInput(1, 1200, l1, l3);
+        app.processPercentageInput(1, 1000, l1, l3);
         
         app.show(1);
         app.show();

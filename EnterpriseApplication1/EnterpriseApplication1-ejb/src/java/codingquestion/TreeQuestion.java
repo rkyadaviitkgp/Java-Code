@@ -14,11 +14,9 @@ import javafx.util.Pair;
 
 // Definition for a binary tree node.
 class TreeNode {
-
     int val;
     TreeNode left;
     TreeNode right;
-
     TreeNode(int x) {
         val = x;
     }
@@ -30,11 +28,11 @@ class TreeNode {
  */
 public class TreeQuestion {
 
-    public void utilVerticalTraversal(TreeNode root, Map<Integer, List<Pair>> mp, int xCordinate, int yCordinate) {
+    public void utilVerticalTraversal(TreeNode root, Map<Integer, List<Pair<Integer, Integer>>> mp, int xCordinate, int yCordinate) {
         if (root == null) {
             return;
         }
-        List<Pair> l1 = mp.get(xCordinate);
+        List<Pair<Integer, Integer>> l1 = mp.get(xCordinate);
         if (l1 == null) {
             l1 = new ArrayList<>();
         }
@@ -49,7 +47,7 @@ public class TreeQuestion {
 
     public List<List<Integer>> verticalTraversal(TreeNode root) {
 
-        Map<Integer, List<Pair>> mp = new HashMap<Integer, List<Pair>>();
+        Map<Integer, List<Pair<Integer, Integer>>> mp = new HashMap<Integer, List<Pair<Integer, Integer>>>();
         utilVerticalTraversal(root, mp, 0, 0);
 
         int max = 0, min = 0;
@@ -64,23 +62,34 @@ public class TreeQuestion {
         List<List<Integer>> resultList = new ArrayList<List<Integer>>();
         for (int i = min; i <= max; i++) {
             if (mp.get(i) != null) {
-                List<Pair> l1 = mp.get(i);
+                List<Pair<Integer, Integer>> l1 = mp.get(i);
                 l1.sort(new Comparator<Pair<Integer, Integer>>() {
                    @Override
                     public int compare(Pair<Integer, Integer> o1, Pair<Integer, Integer> o2) {
                         if (o1.getValue() > o2.getValue()) {
                             return -1;
-                        } else if (o1.getValue().equals(o2.getValue())) {
-                            return 0; // You can change this to make it then look at the
-                            //words alphabetical order
+                        } else if (o1.getValue() == (o2.getValue())) {
+                            if(o1.getKey() > o2.getKey())
+                                return -1;
+                            else if(o1.getKey() == o2.getKey())
+                                return 0;
+                            else
+                                return 1;
                         } else {
                             return 1;
                         }
                     }
                 });
+                List<Integer> item = new ArrayList<>();
+                for(int ind=0; ind<l1.size(); ind++)
+                {
+                    Pair<Integer, Integer> pairItem = l1.get(ind);
+                    item.add(pairItem.getKey());
+                }
+                resultList.add(item);
             }
         }
-
+        return resultList;
     }
 
     public TreeNode mergeUtil(TreeNode t1, TreeNode t2) {
@@ -95,7 +104,6 @@ public class TreeQuestion {
     }
 
     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
-
         return mergeUtil(t1, t2);
     }
 
