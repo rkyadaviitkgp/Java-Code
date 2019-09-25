@@ -138,6 +138,11 @@ class Trie {
 class Solution {
     
     
+    public List<List<String>> MergeAccounts(List<List<String>> accounts){
+        List<List<String>> l = null;
+        return l;
+    }
+    
      public boolean canMerge(int[] a, int[] b){
          
          if(a[1] >= b[0])

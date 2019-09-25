@@ -69,11 +69,41 @@ public class SeptemberCircuitColourBoxes {
         
     }
     
+    public static void smallestChosenWord(BufferedReader br) throws IOException{
+        
+       String stringLength = br.readLine();
+       String s1, s2, s3;
+       String strings1s2s3 = br.readLine();
+       StringTokenizer st = new StringTokenizer(strings1s2s3);
+       
+       s1 = st.nextToken();
+       s2 = st.nextToken();
+       s3 = st.nextToken();
+       
+       StringBuilder x = new StringBuilder("");
+       char c = s3.charAt(0);
+       int i = s2.length() - 1;
+       while(i>=0)
+       {
+           if(s2.charAt(i) <= c)
+           {
+               x.append(s2.charAt(i));
+               c = s2.charAt(i);
+           }
+           i--;
+       }
+       
+       String ansx = x.reverse().toString();
+       System.out.println(s1+ansx+s3);
+       
+    }
+    
     public static void main(String args[]) throws Exception {
        
         int mod = 1000000007;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        goingToOffice(br);
+        //goingToOffice(br);
+        smallestChosenWord(br);
 //        String input = br.readLine();                // Reading input from STDIN
 //        StringTokenizer st = new StringTokenizer(input," ");
 //        int n, m;
