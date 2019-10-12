@@ -89,6 +89,36 @@ public class Solution1 {
         return count - 1;
         
     }
+    
+    public int lengthOfLISUtil(int no, int index, int arr[], int count){
+        
+        if(index >= arr.length)
+            return count;
+        
+        if(arr[index] > no)
+            return Math.max(lengthOfLISUtil(arr[index], index+1, arr, count+1), lengthOfLISUtil(no, index+1, arr, count));
+        else
+            return lengthOfLISUtil(no, index+1, arr, count);
+        
+    }
+    
+    public int lengthOfLIS(int[] nums) {
+        
+        int ans = 0;
+        for(int i=0; i<nums.length; i++){
+            int no = lengthOfLISUtil(nums[i], i+1, nums, 1);
+            if(no > ans)
+                ans = no;
+        }
+        
+        return ans;
+        
+    }
+    
+    
+    public static void main(String args[]){
+        
+    }
 
     
 }

@@ -22,59 +22,27 @@ public class InsertIntervals {
     }
 
     public int[] getMergedValue(int[] a, int[] b) {
-        a[0] = Math.min(a[0], b[0]);
-        a[1] = Math.max(a[1], b[1]);
-        return a;
+        int[] a1 = new int[2];
+        a1[0] = Math.min(a[0], b[0]);
+        a1[1] = Math.max(a[1], b[1]);
+        return a1;
     }
 
     public int[][] insert(int[][] intervals, int[] newInterval) {
-
-        Stack<int[]> st = new Stack<>();
-
-        if (intervals.length > 0) {
-            st.push(intervals[0]);
-        }
-        int flag = 0;
-        int i = 1;
-        for (; i < intervals.length ; i++) {
-            int[] a = st.peek();
-            if(newInterval == a)
-                newInterval = intervals[i];
-            if (canMerge(a, newInterval)) {
-                st.pop();
-                newInterval = getMergedValue(a, newInterval);
-                while(!st.isEmpty() && canMerge(st.peek(), newInterval))
-                {
-                    a = st.pop();
-                    newInterval = getMergedValue(a, newInterval);
-                }
-                st.push(newInterval);
-                //newInterval = null;
-            } else {
-                st.push(intervals[i]);
+        
+        int[][] arr = new int[0][0];
+        Stack<Integer> st =  new Stack<Integer>();
+        for(int i=0; i<intervals.length; i++){
+            if(newInterval != null && canMerge(newInterval, intervals[i])){
+                
+                int[] mergedVal = new int[2];
+                mergedVal = getMergedValue(intervals[i], mergedVal);
+                
             }
         }
+        
+        return new int[1][1];
 
-//        if (st.isEmpty()) {
-//            st.push(newInterval);
-//            for (; i < intervals.length; i++) {
-//                int[] a = st.peek();
-//
-//                if (canMerge(a, intervals[i])) {
-//                    st.pop();
-//                    a = getMergedValue(a, intervals[i]);
-//                    st.push(a);
-//                } else {
-//                    st.push(intervals[i]);
-//                }
-//            }
-//        }
-        int[][] r = new int[st.size()][2];
-        int len = st.size() - 1;
-        for ( i = len; i >= 0; i--) {
-            r[i] = st.pop();
-        }
-        return r;
     }
     public static void main(String[] args) {
         InsertIntervals iobj = new InsertIntervals();

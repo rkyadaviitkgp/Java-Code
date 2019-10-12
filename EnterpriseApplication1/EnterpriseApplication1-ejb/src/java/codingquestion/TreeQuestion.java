@@ -106,5 +106,31 @@ public class TreeQuestion {
     public TreeNode mergeTrees(TreeNode t1, TreeNode t2) {
         return mergeUtil(t1, t2);
     }
+    
+    public String longestCommonPrefix(String[] strs) {
+
+         String ans = "";
+        int j = 0;
+        char c;
+        while ( strs[0].length() > j) {
+            c = strs[0].charAt(j);
+            int flag = 0;
+            for (int i = 0; i < strs.length; i++) {
+                if(strs[i].length() < j || strs[i].charAt(j) != c)
+                {
+                    flag = 1;
+                    break;
+                }
+            }
+            if(flag == 1)
+                break;
+            ans = ans + c;
+            j++;
+        }
+
+        return ans;
+        
+    
+    }
 
 }
