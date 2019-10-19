@@ -1,0 +1,109 @@
+body {
+	padding: 0;
+	margin: 0;
+	background-color: rgb(17, 142, 247);
+	text-align: center;
+}
+
+.container {
+	margin: 30px;
+	border: 0px solid gray;
+	border-radius: 25px;
+	background-color: gray;
+	text-align: center;
+	position: relative;
+	list-style: none;
+	list-style-position: inside;
+}
+
+.title {
+	font-family: georgia;
+	font-size: 36px;
+	color: white;
+	padding: 30px;
+	margin: 0;
+	font-weight: normal;
+	
+}
+
+.titleLink {
+	text-align: left;
+	font-family: georgia;
+	font-size: 24px;
+	color: white;
+	line-height: 80px;
+	list-style-type: disc;
+	padding-left: 30px;
+}
+
+.titleLink a:link, .titleLink a:hover, .titleLink a:visited {
+	color: white;
+	text-decoration: none;
+}
+
+.green {
+	background-color: rgb(0, 128, 123);
+}
+
+.blue {
+	background-color: rgb(0, 255, 119);
+}
+
+.underline {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#flightLogo {
+	width: 30%;
+	margin-bottom: 25px;
+}
+
+.inputField {
+	text-align: left;
+	font-family: georgia;
+	font-size: 24px;
+	line-height: 80px;
+	list-style-type: disc;
+	padding-left: 30px;
+}
+
+.inputLabel {
+	color: white;
+	margin-right: 10px;
+	line-height: 27px;
+}
+
+input, select {
+	vertical-align: middle;
+	height: 40px;
+	padding-left: 7px;
+}
+
+#submitField {
+	text-align: center;
+}
+
+#submitBtn {
+	width: 300px;
+	height: 80px;
+	margin-bottom: 25px;
+	border: 0px solid gray;
+	border-radius: 25px;
+}
+
+#submitBtn:hover {
+	background-color: purple;
+	color: white;
+}
+
+fieldset {
+	margin: 30px;
+	margin-top: 0px;
+	border: 3px solid rgb(192, 192, 192);
+}
+
+legend {
+	font-size: 20px;
+	text-align: center;
+}
