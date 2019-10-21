@@ -5,7 +5,7 @@
  */
 package vending;
 
-import com.sun.xml.fastinfoset.util.FixedEntryStringIntMap;
+//import com.sun.xml.fastinfoset.util.FixedEntryStringIntMap;
 
 /**
  *
