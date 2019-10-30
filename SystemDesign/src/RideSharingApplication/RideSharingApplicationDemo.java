@@ -67,7 +67,6 @@ public class RideSharingApplicationDemo {
         p1.reuestRide(StopName.kondapur, StopName.madhapur, 4);
         p2.reuestRide(StopName.kondapur, StopName.madhapur, 3);
         
-
     }
 
 }

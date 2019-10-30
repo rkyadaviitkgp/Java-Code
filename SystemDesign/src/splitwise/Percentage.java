@@ -44,5 +44,4 @@ public class Percentage extends ExpenseType{
         ex.split(l1, list1, paidByUser);
     }
     
-    
 }

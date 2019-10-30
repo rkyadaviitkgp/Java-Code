@@ -72,11 +72,11 @@ public class AddPassenger extends HttpServlet {
         //processRequest(request, response);
         PrintWriter out = response.getWriter();
         
-        out.println("Inside do get");
+        out.println("Inside do get1");
         
         Passenger p = new Passenger();
         p.setFirstName("Rajesh1");
-        p.setLastName("Yadav1");
+        p.setLastName("Yadav2");
         Calendar c = Calendar.getInstance();
         
         c.set(Calendar.YEAR, 1989);
@@ -89,7 +89,7 @@ public class AddPassenger extends HttpServlet {
         System.out.println(p);
         
         ps.addPassenger(p);
-        
+        out.println(p);
     }
 
     /**

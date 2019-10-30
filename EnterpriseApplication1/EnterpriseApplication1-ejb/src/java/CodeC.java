@@ -14,17 +14,17 @@ import java.util.Map;
  *
  * @author rajeshkumar.yadav
  */
- class TreeNode {
+ class Forest {
       int val;
-      TreeNode left;
-      TreeNode right;
-      TreeNode(int x) { val = x; }
+      Forest left;
+      Forest right;
+      Forest(int x) { val = x; }
   }
  
 public class CodeC {
 
     // Encodes a tree to a single string.
-    public String serialize(TreeNode root) {
+    public String serialize(Forest root) {
         
         if(root == null)
             return "";
@@ -92,7 +92,7 @@ public class CodeC {
     }
 
     // Decodes your encoded data to tree.
-    public TreeNode deserialize(String data) {
+    public Forest deserialize(String data) {
         
         //
         if(data == null || data.equalsIgnoreCase(""))
@@ -101,7 +101,7 @@ public class CodeC {
         
         int val = Integer.valueOf(data.substring(0, index));
         System.out.println("val = " + val);
-        TreeNode tempnode = new TreeNode(val);
+        Forest tempnode = new Forest(val);
         data = data.substring(index+1);
         System.out.println("data = " + data);
         index = data.indexOf(";");
@@ -129,9 +129,9 @@ public class CodeC {
 //        CodeC cdc = new CodeC();
 //        
 //        System.out.println("hi");
-//        TreeNode root = new TreeNode(1);
-//        root.left = new TreeNode(2);
-//        root.right = new TreeNode(3);
+//        Forest root = new Forest(1);
+//        root.left = new Forest(2);
+//        root.right = new Forest(3);
 //        String str = cdc.serialize(root);
 //        System.out.println(str);
 //        cdc.deserialize(str);

@@ -85,8 +85,6 @@
 		<div class="inputField" id="submitField">
 			<input type="submit" name="submit" value="Submit"/>
 		</div>
-
-
 		</form>
 
 

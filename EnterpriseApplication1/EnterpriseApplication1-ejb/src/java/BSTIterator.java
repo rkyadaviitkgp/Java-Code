@@ -13,18 +13,18 @@ import java.util.Stack;
  */
 /**
  * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
+ * public class Forest {
+     int val;
+     Forest left;
+     Forest right;
+     Forest(int x) { val = x; }
+ }
  */
 class BSTIterator {
 
-    Stack<TreeNode> st;
-    public BSTIterator(TreeNode root) {
-        st =  new Stack<TreeNode>();
+    Stack<Forest> st;
+    public BSTIterator(Forest root) {
+        st =  new Stack<Forest>();
         while(root != null)
         {
             st.push(root);
@@ -35,7 +35,7 @@ class BSTIterator {
     /** @return the next smallest number */
     public int next() {
         
-        TreeNode temp =  st.pop();
+        Forest temp =  st.pop();
         int val = temp.val;
         if(temp.right!=null)
         {
