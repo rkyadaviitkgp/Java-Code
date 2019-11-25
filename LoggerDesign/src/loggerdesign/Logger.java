@@ -6,6 +6,8 @@
 
 package loggerdesign;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.logging.Level;
@@ -61,8 +63,11 @@ public class Logger extends Thread{
         System.out.println("loggerdesign.Logger.logMessage()" + Thread.currentThread().getName());
         if(loggerLevel != logLevel)
             return;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
+        LocalDateTime now = LocalDateTime.now();  
+        //System.out.println(dtf.format(now));  
  
-        Message m = new Message(message , logLevel);
+        Message m = new Message(message  + (dtf.format(now)) , logLevel);
         try{
             buffer[counter++] = m;
             

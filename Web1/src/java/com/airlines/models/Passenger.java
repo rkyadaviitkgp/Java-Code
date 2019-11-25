@@ -13,6 +13,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -21,6 +22,7 @@ import javax.persistence.Transient;
  *
  * @author rajeshkumar.yadav
  */
+@NamedQuery(name ="Passenger.getPassenger", query = "SELECT p FROM Passenger p")
 @Entity
 public class Passenger implements Serializable {
 

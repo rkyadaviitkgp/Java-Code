@@ -5,9 +5,7 @@
  */
 package com.airline.controllers;
 
-import com.airline.service.PilotService;
-import com.airlines.models.Pilot;
-import com.airlines.models.PilotRank;
+import com.airline.service.FlightService;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -21,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author rajeshkumar.yadav
  */
-@WebServlet(name = "AddPilot", urlPatterns = {"/AddPilot"})
-public class AddPilot extends HttpServlet {
+@WebServlet(name = "AddPilotToFlight", urlPatterns = {"/AddPilotToFlight"})
+public class AddPilotToFlight extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,11 +30,10 @@ public class AddPilot extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     * 
      */
     
     @EJB
-    PilotService ps;
+    FlightService fs;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -46,10 +43,10 @@ public class AddPilot extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddPilot</title>");            
+            out.println("<title>Servlet AddPilotToFlight</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddPilot at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddPilotToFlight at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -67,20 +64,10 @@ public class AddPilot extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        Pilot p = new Pilot();
-        p.setFirstName("Rajesh");
-        p.setLastName("Yadav");
-        p.setPilotLisence(12743);
-        p.setPilotRank(PilotRank.CAPTAIN);
         
-        
-        PrintWriter out = response.getWriter();
-        
-        
-        
-        ps.addPilot(p);
-        out.println(p);
+        String pid = request.getParameter("pid");
+        String fid = request.getParameter("fid");
+        fs.addPilotToFlight(pid, fid); 
         
     }
 
@@ -95,8 +82,7 @@ public class AddPilot extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        
+        processRequest(request, response);
     }
 
     /**

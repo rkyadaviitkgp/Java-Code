@@ -6,10 +6,12 @@
 package com.airline.service;
 
 import com.airlines.models.Passenger;
+import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -31,4 +33,14 @@ public class PassengerService  {
         em.persist(p); 
         
     }
+    
+    public List<Passenger> getPassenger(){
+        
+        TypedQuery<Passenger> fquery = em.createNamedQuery("Passenger.getPassenger", Passenger.class);
+        //fquery.setParameter("id", Integer.parseInt(flightId));
+        List<Passenger> plist = fquery.getResultList();
+        return plist;
+        
+    }
+    
 }
