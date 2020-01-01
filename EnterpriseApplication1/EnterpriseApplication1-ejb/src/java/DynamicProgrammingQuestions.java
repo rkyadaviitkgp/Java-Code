@@ -1,3 +1,7 @@
+
+import java.util.ArrayList;
+import java.util.List;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -131,36 +135,209 @@ s could be empty and contains only lowercase letters a-z.
 p could be empty and contains only lowercase letters a-z, and characters like ? or *.
     */
     
-    
-    public boolean wildCardUtil(String input , int inputInd, String pattern, int patternInd){
+    public boolean containsOnlyStar(String pattern, int patternInd){
         
-        if(inputInd >= input.length() && patternInd>= pattern.length())
+        for(int i=patternInd; i<pattern.length(); i++){
+            if(pattern.charAt(i) != '*')
+                return false;
+        }
+        return true;
+    }
+    
+    public boolean wildCardUtil(String input , int inputInd, String pattern, int patternInd, int [][] arr){
+        if(arr[inputInd][patternInd] == 0)
+            return false;
+        else if(arr[inputInd][patternInd] == 1)
             return true;
+        if(inputInd >= input.length() && (patternInd>= pattern.length() || containsOnlyStar(pattern, patternInd) == true))
+        {
+            arr[inputInd][patternInd] = 1;
+            return true;
+        }
         if(inputInd >= input.length())
+        {
+            arr[inputInd][patternInd] = 0;
             return false;
+        }
         if(patternInd>= pattern.length())
+        {
+            arr[inputInd][patternInd] = 0;
             return false;
+        }
         if(input.charAt(inputInd) == pattern.charAt(patternInd))
-            return wildCardUtil(input, inputInd + 1, pattern, patternInd+1);
+        {
+            boolean b = wildCardUtil(input, inputInd + 1, pattern, patternInd+1, arr);
+            if(b== true)
+            {
+                arr[inputInd][patternInd] = 1;
+                return true;
+            }else{
+                arr[inputInd][patternInd] = 0;
+                return false;
+            }
+        }
         if(pattern.charAt(patternInd) == '?')
-            return wildCardUtil(input, inputInd, pattern, patternInd+1);
+        {
+            boolean b = wildCardUtil(input, inputInd, pattern, patternInd+1, arr);
+            if(b== true)
+            {
+                arr[inputInd][patternInd] = 1;
+                return true;
+            }else{
+                arr[inputInd][patternInd] = 0;
+                return false;
+            }
+        }
         if(pattern.charAt(patternInd) == '*')
         {
             for(int i=0; i<=input.length(); i++){
-                String input1 = ( (i == input.length()) ? "" : input.substring(i));
-                String pattern1 = pattern.substring(patternInd);
-                if(wildCard(input1, pattern1) == true)
+//                String input1 = ( (i == input.length()) ? "" : input.substring(i));
+//                String pattern1 = pattern.substring(patternInd);
+//                if(wildCard(input1, pattern1) == true)
+//                    return true;
+                if(wildCardUtil(input, i+inputInd, pattern, patternInd + 1, arr) == true)
+                {
+                    arr[inputInd][patternInd] = 1;
                     return true;
+                }
             }
+            arr[inputInd][patternInd] = 0;
             return false;
         }
+        arr[inputInd][patternInd] = 0;
         return false;
     }
     
     public boolean wildCard(String s, String p) {
         
+        int[][] arr = new int[s.length()+1][p.length() + 1];
+        if(s.isEmpty() && containsOnlyStar(p, 0) == true)
+            return true;
+        for(int i=0; i<=s.length(); i++){
+            for(int j=0; j<=p.length(); j++){
+                arr[i][j] = -1;
+            }
+        }
+        wildCardUtil(s,0,p,0,arr);
+        if(arr[s.length()][p.length()] == 1)
+            return true;
+        return false;
         
-        return true;
+    }
+    
+     public int coinChangeUtil(int[] coins, int amount, int[] arr){
+        
+       if(arr[amount] != -1)
+           return arr[amount];
+       
+        if(amount == 0)
+            return 0;
+        
+        if(amount < 0)
+            return Integer.MAX_VALUE;
+        
+        int max = Integer.MAX_VALUE;
+        
+        for(int i=0; i<coins.length; i++){
+            int temp = Integer.MAX_VALUE;
+            if(coins[i] <= amount){
+                int val = coinChangeUtil(coins, amount - coins[i], arr);
+                if(val  != Integer.MAX_VALUE)
+                    temp = 1 + val;
+            }
+            if(temp < max)
+                max = temp;
+        }
+        arr[amount] = max;
+        return max;
+    }
+    
+    public int coinChange(int[] coins, int amount) {
+        
+        int[] arr = new int[amount+1];
+        for(int i=0; i<=amount; i++)
+            arr[i] = -1;
+        int val = coinChangeUtil(coins, amount, arr);
+        if(val == Integer.MAX_VALUE)
+            return -1;
+        return val;
+    }
+    
+    
+    public int countOfSubSetSum(int arr[], int sum, int index){
+        
+//        if(dyn[sum][index+1] != -1)
+//            return dyn[sum][index+1];
+        
+        if(sum == 0)
+            return 1;
+        
+        if(index >= arr.length || sum < 0)
+            return 0;
+        
+         return countOfSubSetSum(arr, sum - arr[index], index + 1) + countOfSubSetSum(arr, sum, index + 1);
+        
+    }
+
+    public int getVal(int [][] dyn, int index, int sum){
+        if(sum < 0)
+            return 0;
+        if(index < 0)
+            return 0;
+        //if(index >= )
+        int max = 0;
+        if(sum == 0)
+            max = 1;
+        return Math.max(max, dyn[sum][index]);
+    }
+    public int countOfSubSetSumDyn(int [] arr, int sum, int [][] dyn){
+        
+        
+        for(int i=1; i<=sum; i++)
+        {
+            for(int j=1; j<=arr.length; j++){
+                
+                dyn[i][j] = getVal(dyn, j-1, i - arr[j-1]) + getVal(dyn, j-1, i);
+                //System.out.print(dyn[i][j] + " ");
+            }
+            //System.out.println("");
+        }
+        return dyn[sum][arr.length];
+    }
+    
+//    public static void main(String args[]){
+//        
+//        long start = System.currentTimeMillis();
+//        DynamicProgrammingQuestions dp = new DynamicProgrammingQuestions();
+//        int[] arr = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+//        int sum = 9;
+////        int arr[] = {1,1,7,1, 5};
+////        int sum = 9;
+//        int[][] dyn = new int[sum+1][arr.length+1];
+//        for(int i=0; i<=sum; i++)
+//            dyn[i][0] = 0;
+//        for(int j = 0; j<=arr.length; j++)
+//                dyn[0][j] = 0;
+//        //int ans = dp.countOfSubSetSum(arr, sum, 0);
+//        dp.countOfSubSetSumDyn(arr, sum, dyn);
+//        long end = System.currentTimeMillis();
+//        System.out.println(dyn[sum][arr.length] + "  -- " + (end-start));
+//        
+//    }
+//    
+    public int findTargetSumWaysUtil(int [] nums, int sum, int index){
+        
+        if(index == nums.length && sum == 0)
+            return 1;
+        if(index > nums.length)
+            return 0;
+        return findTargetSumWaysUtil(nums, sum-nums[index], index+1) + findTargetSumWaysUtil(nums, sum + nums[index] , index + 1);
+        
+    }
+    
+    public int findTargetSumWays(int[] nums, int S) {
+        
+       return findTargetSumWaysUtil(nums, S, 0);
         
     }
     

@@ -115,6 +115,26 @@ public class Solution1 {
         
     }
     
+    public int maxArea(int[] height) {
+        
+        int n = height.length;
+        int max = 0;
+        int tempArea = 0;
+        for(int i = 0; i < n; i++){
+            tempArea = 0;
+            for(int j=n-1; j>i; j--){
+                if(height[i] <= height[j])
+                {
+                    tempArea= (j-i) * height[i];
+                     break;
+                }
+            }
+            if(max < tempArea)
+                max = tempArea;
+        }
+        return max;
+        
+    }
     
     public static void main(String args[]){
         
