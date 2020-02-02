@@ -1,6 +1,11 @@
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.StringTokenizer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -339,6 +344,124 @@ p could be empty and contains only lowercase letters a-z, and characters like ? 
         
        return findTargetSumWaysUtil(nums, S, 0);
         
+    }
+    
+    public int maxSumDivThree(int []nums, int sum, int index, int []memo){
+        
+        if(index >= nums.length)
+        {
+            if(sum%3 == 0)
+                return sum;
+            return -1;
+        }
+        
+        if(memo[index] != Integer.MIN_VALUE)
+            return memo[index];
+        
+        int res1 = maxSumDivThree(nums, sum + nums[index] , index+1, memo);
+        int res2 = maxSumDivThree(nums, sum , index+1, memo);
+        memo[index] =  Math.max(res1, res2);
+        return memo[index];
+    }
+    
+    
+    public int maxSumDivThree(int[] nums) {
+        
+        final int sumDivisbleBy = 3;
+        int arr[] = new int[sumDivisbleBy];
+        int currentVal[] = new int[sumDivisbleBy];
+        Arrays.fill(arr, 0);
+        
+        for(int i=0; i<nums.length; i++)
+        {
+            
+            if(nums[i] % 3 == 1)
+            {
+                currentVal[1] = Math.max(arr[1], arr[0] + nums[i]);
+                currentVal[0] = Math.max(arr[2] + nums[i], arr[0]);
+                
+            }
+            else if(nums[i] % 3 == 2)
+            {
+                
+                currentVal[2] = Math.max(arr[2], arr[0] + nums[i]);
+                currentVal[0] = Math.max(arr[1] + nums[i], arr[0]);
+                
+            }else{
+                
+                currentVal[1] = Math.max(arr[1] + nums[i], arr[1]);
+                currentVal[0] = Math.max(arr[0] + nums[i], arr[0]);
+                currentVal[2] = Math.max(arr[2] + nums[i], arr[2]);
+                
+            }
+            
+            for(int j=0; j<sumDivisbleBy; j++)
+                arr[j] = currentVal[j];
+        }
+        
+        return arr[0];
+    }
+    
+    public static int  coinChangeProblem(int amount, int coins[], int index, int[][] memo){
+        
+         if(amount < 0)
+            return 0;
+        
+        if(memo[index][amount] != -1)
+        {
+            return memo[index][amount];
+        }
+        
+       
+        if(amount == 0)
+            return 1;
+        
+        int a = 0;
+        for(int i=index; i<coins.length; i++){
+            a = a + coinChangeProblem(amount - coins[i], coins, i, memo);
+        }
+        
+        memo[index][amount] = a;
+        return memo[index][amount];
+        
+    }
+    
+    public static void longestPalindromicSubString(){
+    
+    } 
+    
+    public static void main(String[] args) throws IOException{
+        int t;
+        int n;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String s = br.readLine();
+        t = Integer.parseInt(s);
+        while(t > 0){
+            t--;
+//            s = br.readLine();
+//            n = Integer.parseInt(s);
+//            s = br.readLine();
+//            StringTokenizer st = new StringTokenizer(s);
+//            s = br.readLine();
+//            int amount = Integer.parseInt(s);
+//            int[] arr = new int[n];
+//            int i = 0;
+//            while(st.hasMoreTokens()){
+//                arr[i++] = Integer.parseInt(st.nextToken());
+//            }
+            //arr[n] = 0;
+            //int[][] memo = new int[n+1][amount+1];
+            n = 4;
+            int amount = 10;
+            int[][] memo = new int[n+1][amount+1];
+            for(int i=0; i<n; i++)
+                Arrays.fill(memo[i], -1);
+            //coinChangeProblem(amount, arr, 0, memo);
+            int[] arr1 = {2,5,3,6};
+            int a = coinChangeProblem(amount, arr1, 0, memo);
+            System.out.println(a);
+            //System.out.println(arr[n]);
+        }
     }
     
 }

@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.Stack;
 import javafx.util.Pair;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,6 +27,186 @@ class StackUsingQueue {
      */
     Queue<Integer> q1;
     Queue<Integer> q2;
+    
+    public String removeDuplicates(String S) {
+        
+        Stack<Character> st = new Stack<Character>();
+        
+        for(char c : S.toCharArray()){
+            if(!st.isEmpty() && st.peek() == c){
+                while(!st.isEmpty() && st.peek() == c){
+                    st.pop();
+                }
+            }else{
+                st.push(c);
+            }
+        }
+        
+        String str  = "";
+        while(!st.isEmpty()){
+            str = str + st.pop() ;
+        }
+        StringBuffer sb  = new StringBuffer(str);
+        return sb.reverse().toString();
+    }
+    
+    public boolean validateStackSequences(int[] pushed, int[] popped) {
+        
+        int pushInd = 0;
+        int popInd  = 0;
+        boolean  ans = false;
+        Stack<Integer> st = new Stack<>();
+        
+        for(pushInd = 0; pushInd<pushed.length; pushInd++){
+            
+            st.push(pushed[pushInd]);
+            
+            while(popInd < popped.length && !st.isEmpty() && st.peek() == popped[popInd])
+            {
+                popInd++;
+                st.pop();
+            }
+        }
+        
+        if(!st.isEmpty())
+            return false;
+        
+        return true;
+    }    
+    
+    public int compareVersion(String version1, String version2) {
+        
+        StringTokenizer stv1 = new StringTokenizer(version1,".");
+        StringTokenizer stv2 = new StringTokenizer(version2,".");
+        
+        while(stv1.hasMoreTokens() && stv2.hasMoreTokens()){
+            
+            int subv1 = Integer.parseInt(stv1.nextToken());
+            int subv2 = Integer.parseInt(stv2.nextToken());
+            
+            if(subv1 > subv2)
+                return 1;
+            else if(subv1 < subv2)
+                return -1;
+            
+        }
+        
+        if(stv1.hasMoreTokens())
+            return 1;
+        if(stv2.hasMoreTokens())
+            return -1;
+        return 0;
+        
+    }
+    
+    public String reverseWords(String s) {
+        
+        int start = 0;
+        int end = s.length() - 1;
+        StringBuffer sb = new StringBuffer(s);
+        
+        while(start < end){
+            char c = sb.charAt(start);
+            sb.setCharAt(start, sb.charAt(end));
+            sb.setCharAt(end, c);
+            start++;
+            end--;
+        }
+        StringTokenizer st = new StringTokenizer(sb.toString().trim());
+        sb = new StringBuffer();
+        while(st.hasMoreTokens()){
+            StringBuilder strb = new StringBuilder(st.nextToken());
+            
+            sb.append(strb.reverse().toString() + " ");
+        }
+        return sb.toString().trim();
+    }
+    
+//    public List<List<Integer>> threeSum(int[] nums) {
+//        
+//        
+//        
+//    }
+    
+    public String removeOuterParentheses(String S) {
+        
+        int count = 0;
+        int startInd = 0;
+        StringBuilder sb = new StringBuilder();
+        
+        for(int i=0; i<S.length(); i++){
+            
+            if(S.charAt(i) == '(')
+                count++;
+            else if(S.charAt(i) == ')')
+                count--;
+            if(count == 0){
+                //ans = ans + S.substring(startInd+1, i);
+                sb.append(S.substring(startInd+1, i));
+                startInd = i + 1;
+            }
+        }
+        return sb.toString();
+    }
+    
+    public String reverseParentheses(String s) {
+        
+        List<Character> list = new ArrayList<>();
+        Stack<Character> st = new Stack<>();
+        
+        for(char c : s.toCharArray()){
+            if(c == ')')
+            {
+                while(!st.isEmpty() && st.peek() != '('){
+                    list.add(st.pop());
+                }
+                if(!st.isEmpty())
+                 st.pop();
+                for(int i=0; i<list.size(); i++)
+                    st.push(list.get(i));
+                list.clear();
+            }else{
+                st.push(c);
+            }
+        }
+        String ans = "";
+        while(!st.isEmpty()){
+            ans = ans + st.pop();
+        }
+        StringBuffer sb = new StringBuffer(ans);
+        return sb.reverse().toString();
+    }
+    
+    public boolean checkStack(Stack<Character> st){
+        
+        String str = "abc";
+        int index = str.length()-1;
+        while(!st.isEmpty() && index>= 0 && st.peek() == str.charAt(index)){
+            st.pop();
+            index--;
+        }
+        if(index < 0)
+            return true;
+        for(int i=index+1; i<str.length(); i++)
+            st.push(str.charAt(i));
+        return false;
+        
+    }
+    
+    public boolean isValid(String S) {
+        
+        String validString = "abc";
+        Stack<Character> st = new Stack<Character>();
+        int index = 0;
+        while(index < S.length() ){
+            st.push(S.charAt(index));
+            if(S.charAt(index) == 'c')
+                checkStack(st);
+            index++;
+        }
+        while(checkStack(st) == true);
+        return st.isEmpty();
+    }
 
     public StackUsingQueue() {
         q1 = new LinkedList<Integer>();
