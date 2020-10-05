@@ -69,32 +69,7 @@ public class AddFlight extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        Flight f = new Flight();
-        f.setDestination(Airport.DELHI);
-        f.setSource(Airport.PUNE);
-        f.setPrice(1000);
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.YEAR, 2019);
-        c.set(Calendar.MONTH, 2);
-        c.set(Calendar.DAY_OF_MONTH, 2);
-        c.set(Calendar.HOUR, 7);
-        c.set(Calendar.MINUTE, 10);
-        Date d = c.getTime();
-        f.setTime(d);
         
-        Aeroplane a = new Aeroplane();
-        a.setPlaneMake("Indigo");
-        a.setModelName("777");
-        a.setSeatingCapacity(250);
-        
-        f.setAeroplaneDetails(a);
-        
-        System.out.println(f);
-        System.out.println(a);
-        PrintWriter out = response.getWriter();
-        out.println(f);
-        out.println(a);
-        fs.addFlight( f, a);
         
         
     }
@@ -110,7 +85,41 @@ public class AddFlight extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String fromDestination = request.getParameter("from_destination");
+        String toDestination = request.getParameter("to_destination");
+        Integer price = Integer.parseInt(request.getParameter("price"));
+        Integer year = Integer.parseInt(request.getParameter("year"));
+        Integer month = Integer.parseInt(request.getParameter("month"));
+        Integer day = Integer.parseInt(request.getParameter("day"));
+        Integer hour = Integer.parseInt(request.getParameter("hour"));
+        Integer minute = Integer.parseInt(request.getParameter("minute"));
+        String planeMake = request.getParameter("airplane_make");
+        String modelName = request.getParameter("airplane_model");
+        Integer seating = Integer.parseInt(request.getParameter("airplane_seating"));
+        
+        Flight f = new Flight();
+        f.setDestination(Airport.valueOf(toDestination));
+        f.setSource(Airport.valueOf(fromDestination));
+        f.setPrice(price);
+        
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, day);
+        c.set(Calendar.HOUR, hour);
+        c.set(Calendar.MINUTE, minute);
+        Date d = c.getTime();
+        f.setTime(d);
+        
+        Aeroplane a = new Aeroplane();
+        a.setPlaneMake(planeMake);
+        a.setModelName(modelName);
+        a.setSeatingCapacity(seating);
+        f.setAeroplaneDetails(a);
+        fs.addFlight( f, a);
+        response.sendRedirect("Flights");
+        
     }
 
     /**

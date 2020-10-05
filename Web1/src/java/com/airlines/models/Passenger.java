@@ -17,6 +17,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -24,6 +25,7 @@ import javax.persistence.Transient;
  */
 @NamedQuery(name ="Passenger.getPassenger", query = "SELECT p FROM Passenger p")
 @Entity
+@XmlRootElement
 public class Passenger implements Serializable {
 
     @Transient

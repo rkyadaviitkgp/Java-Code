@@ -22,7 +22,7 @@
         <table>
 
             <tr>
-
+                 <th>Id</th>
                 <th>From</th>
                 <th>To</th>
                 <th>Time</th>
@@ -40,50 +40,34 @@
                 List<Flight> fList = (List<Flight>) request.getAttribute("flight list");
 
                 for (Integer i = 0; i < fList.size(); i++) {
-
-
             %>
 
             <tr>
-
+                
+                <td><%= fList.get(i).getId()%></td>
                 <td><%= fList.get(i).getSource()%></td>
                 <td><%= fList.get(i).getDestination()%></td>
                 <td><%= fList.get(i).getTime()%></td>
                 <td><%= fList.get(i).getPrice()%></td>
                 <td> <%= fList.get(i).getAeroplaneDetails().getModelName()%> </td>
                 <td> <%= fList.get(i).getAeroplaneDetails().getSeatingCapacity()%> </td>
-                <td> <%
-                    if (fList.get(i).getPilots() != null){
-                                    
-                    %>
-                    
-                    <%= fList.get(i).getPilots().size()  %> pilots
-                    <%
-                        }else{
-                    %>
-                    No pilots added yet 
-                    <%
-                    }
-                    %>
-                </td>
+                <td> <%= fList.get(i).getPilots().size()%> </td>
                 <td>
-                     <%
+                    <%
                     if (fList.get(i).getPilots() != null){
                          List<Pilot> plist =  (List<Pilot>) fList.get(i).getPilots();
                          for(int j = 0; j<plist.size(); j++){
-                             
                     %>
                     <%= (j+1) + ")" + plist.get(j).getFirstName() + "  "  + plist.get(j).getLastName() + " ( " + plist.get(j).getPilotRank() + " ) " %>
                     <%
                         }
                     }
                     %>
-                    </td>
-
+                   
+                </td>
+               
             </tr>
-            <tr>
-                <td colspan="4">No Passengers on this flight yet.</td>
-            </tr>
+            
 
             <%
                 }

@@ -20,6 +20,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -27,6 +29,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @NamedQuery(name ="Flight.findById", query = "SELECT f FROM Flight f WHERE f.id = :id")
+@XmlRootElement
 public class Flight implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,6 +55,7 @@ public class Flight implements Serializable {
     @OneToMany(mappedBy = "flightForPilot")
     private List<Pilot> pilots;
 
+    @XmlTransient
     public List<Pilot> getPilots() {
         return pilots;
     }
@@ -60,7 +64,9 @@ public class Flight implements Serializable {
         this.pilots = pilots;
     }
     
-    
+    public void setPilots(Pilot pilot) {
+        this.pilots.add(pilot);
+    }
 
     public Aeroplane getAeroplaneDetails() {
         return aeroplaneDetails;

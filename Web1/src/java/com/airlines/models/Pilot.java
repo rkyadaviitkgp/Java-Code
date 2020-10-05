@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -24,6 +25,7 @@ import javax.persistence.OneToOne;
  */
 @NamedQuery(name ="Pilot.findById", query = "SELECT P FROM Pilot P WHERE P.id = :id")
 @Entity
+@XmlRootElement
 public class Pilot implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -37,6 +37,7 @@ public class AddPilot extends HttpServlet {
     
     @EJB
     PilotService ps;
+   
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -68,19 +69,7 @@ public class AddPilot extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        Pilot p = new Pilot();
-        p.setFirstName("Rajesh");
-        p.setLastName("Yadav");
-        p.setPilotLisence(12743);
-        p.setPilotRank(PilotRank.CAPTAIN);
         
-        
-        PrintWriter out = response.getWriter();
-        
-        
-        
-        ps.addPilot(p);
-        out.println(p);
         
     }
 
@@ -96,6 +85,20 @@ public class AddPilot extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
+        String firstName = request.getParameter("first_name");
+        String lastName = request.getParameter("last_name");
+        String licenceNumber = request.getParameter("license");
+        String pilotRank = request.getParameter("pilot_rank");
+        String flightId = request.getParameter("fid");
+        
+        Pilot p = new Pilot();
+        p.setFirstName(firstName);
+        p.setLastName(lastName);
+        p.setPilotLisence(Integer.parseInt(licenceNumber));
+        p.setPilotRank(PilotRank.valueOf(pilotRank));
+        //ps.addPilot(p);
+        ps.addPilotToFlight(p, flightId);
+        response.sendRedirect("Flights");
         
     }
 
@@ -107,6 +110,6 @@ public class AddPilot extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

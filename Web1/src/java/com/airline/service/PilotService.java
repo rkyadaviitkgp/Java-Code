@@ -43,4 +43,13 @@ public class PilotService {
         Pilot p = pQuery.getSingleResult();
                 
     }
+    public void addPilotToFlight(Pilot pilot, String flightId){
+         em.persist(pilot);
+        TypedQuery<Flight> fQuery = em.createNamedQuery("Flight.findById", Flight.class);
+        fQuery.setParameter("id", Integer.parseInt(flightId));
+        Flight f = fQuery.getSingleResult();
+        f.setPilots(pilot);
+        pilot.setFlightForPilot(f);
+        
+    }
 }
