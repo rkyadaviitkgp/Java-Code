@@ -15,10 +15,11 @@ import cabmanagement.model.Cab;
 public class OnBoardCab implements OnBoard{
 
     @Override
-    public CabManagementEntity onBoard() {
+    public CabManagementEntity onBoard(String configurationFileName) {
         //craete a cab
-        Cab c = new Cab();
-        return c;
+        //read cab details
+        //Cab c = new Cab();
+        return new CabManagementEntity();
     }
     
 }

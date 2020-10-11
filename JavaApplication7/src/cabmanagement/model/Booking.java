@@ -14,26 +14,16 @@ import java.util.Date;
 public class Booking {
     
     String id;
-    Date journeyDate;
     Date bookingdate;
     String startCityId;
     String endCityId;
     String userId;
 
-    public Booking(Date journeyDate, Date bookingdate, String startCityId, String endCityId, String userId) {
-        this.journeyDate = journeyDate;
+    public Booking(Date bookingdate, String startCityId, String endCityId, String userId) {
         this.bookingdate = bookingdate;
         this.startCityId = startCityId;
         this.endCityId = endCityId;
         this.userId = userId;
-    }
-
-    public Date getJourneyDate() {
-        return journeyDate;
-    }
-
-    public void setJourneyDate(Date journeyDate) {
-        this.journeyDate = journeyDate;
     }
 
     public Date getBookingdate() {

@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cabmanagement.controller;
-
-import cabmanagement.model.CabManagementEntity;
+package cabmanagement.utility;
 
 /**
  *
  * @author rajeshkumar.yadav
  */
-public interface OnBoard {
-    public CabManagementEntity onBoard(String configurationFileName);
+public class ConfigurationReader {
+    
+    String fileName;
+    
+    
 }

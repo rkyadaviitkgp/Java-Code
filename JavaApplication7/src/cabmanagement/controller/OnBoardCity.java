@@ -15,7 +15,7 @@ import cabmanagement.model.City;
 public class OnBoardCity implements OnBoard{
 
     @Override
-    public CabManagementEntity onBoard() {
+    public CabManagementEntity onBoard(String configurationFileName) {
         //create a city 
         City c = new City();
         return c;

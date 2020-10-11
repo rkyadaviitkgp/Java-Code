@@ -12,3 +12,15 @@
 /JavaApplication7/dist/
 /AmazonPreparation/nbproject/private/
 /AmazonPreparation/build/
+/LIftManagement/nbproject/private/
+/LIftManagement/build/
+.DS_Store
+.gitignore
+*.xml
+*.mf
+javaseconcurrency/target/classes/
+javaseconcurrency/target/test-classes/
+LIftManagement/nbproject/
+JavaApplication7/.DS_Store
+javaseconcurrency/target/classes/
+javaseconcurrency/target/test-classes/

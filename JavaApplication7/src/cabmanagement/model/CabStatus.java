@@ -11,6 +11,5 @@ package cabmanagement.model;
  */
 public enum CabStatus {
     ON_TRIP,
-    IDLE,
-    BOOKED
+    IDLE
 }

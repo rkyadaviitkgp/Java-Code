@@ -15,6 +15,7 @@ public class City extends CabManagementEntity{
     
     String Name;
     String id;
+    String state;
 
     public String getName() {
         return Name;

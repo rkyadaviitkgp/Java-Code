@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cabmanagement.controller;
+package liftmanagement.controller;
 
-import cabmanagement.model.CabManagementEntity;
+import java.util.List;
+import liftmanagement.entity.Lift;
+import liftmanagement.entity.Request;
 
 /**
  *
  * @author rajeshkumar.yadav
  */
-public interface OnBoard {
-    public CabManagementEntity onBoard(String configurationFileName);
+public interface Scheduler {
+   public void scheduleRequest(Request r, List<Lift> liftList);
 }

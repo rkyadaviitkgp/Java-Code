@@ -3,14 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cabmanagement.controller;
+package liftmanagement.entity;
 
-import cabmanagement.model.CabManagementEntity;
+import java.util.List;
 
 /**
  *
  * @author rajeshkumar.yadav
  */
-public interface OnBoard {
-    public CabManagementEntity onBoard(String configurationFileName);
+public class Lift {
+    
+    String liftId;
+    LiftState liftState;
+    int currentFloor;
+    LiftDirection direction;
+    List<Request> request;
+    
+    
 }

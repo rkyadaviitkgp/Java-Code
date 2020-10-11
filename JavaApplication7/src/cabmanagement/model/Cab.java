@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package cabmanagement.model;
-
 /**
  *
  * @author rajeshkumar.yadav
@@ -13,8 +12,11 @@ public class Cab extends CabManagementEntity{
     
     String noPlate;
     CabType type;
-    CabStatus status;
-    String currCityID;
+
+    public Cab(String noPlate, CabType type) {
+        this.noPlate = noPlate;
+        this.type = type;
+    }
 
     public String getNoPlate() {
         return noPlate;
@@ -30,22 +32,6 @@ public class Cab extends CabManagementEntity{
 
     public void setType(CabType type) {
         this.type = type;
-    }
-
-    public CabStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(CabStatus status) {
-        this.status = status;
-    }
-
-    public String getCurrCityID() {
-        return currCityID;
-    }
-
-    public void setCurrCityID(String currCityID) {
-        this.currCityID = currCityID;
     }
     
 }
