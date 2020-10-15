@@ -13,28 +13,24 @@ import java.util.Date;
  */
 public class Trip {
     
-    String Id;
+    String tripId;
     String cabId;
     String bookingId;
     TripStatus status;
-    Date startTime;
-    Date endTime;
 
-    public Trip(String Id, String cabId, String bookingId, TripStatus status, Date startTime, Date endTime) {
-        this.Id = Id;
+    public Trip(String Id, String cabId, String bookingId, TripStatus status) {
+        this.tripId = Id;
         this.cabId = cabId;
         this.bookingId = bookingId;
         this.status = status;
-        this.startTime = startTime;
-        this.endTime = endTime;
     }
 
     public String getId() {
-        return Id;
+        return tripId;
     }
 
     public void setId(String Id) {
-        this.Id = Id;
+        this.tripId = Id;
     }
 
     public String getCabId() {
@@ -59,22 +55,6 @@ public class Trip {
 
     public void setStatus(TripStatus status) {
         this.status = status;
-    }
-
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
     }
 
 }

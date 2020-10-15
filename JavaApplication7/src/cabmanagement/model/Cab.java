@@ -4,20 +4,28 @@
  * and open the template in the editor.
  */
 package cabmanagement.model;
+
+import cabmanagement.utility.UniqueIdGenerator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
+
 /**
  *
  * @author rajeshkumar.yadav
  */
-public class Cab extends CabManagementEntity{
+public class Cab {
     
+    String id;
     String noPlate;
     CabType type;
 
     public Cab(String noPlate, CabType type) {
+        id = "cab" + UniqueIdGenerator.generateUniqueId();
         this.noPlate = noPlate;
         this.type = type;
     }
-
+    
     public String getNoPlate() {
         return noPlate;
     }

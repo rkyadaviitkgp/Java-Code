@@ -5,84 +5,55 @@
  */
 package cabmanagement.controller;
 
-import cabmanagement.model.City;
-import cabmanagement.model.User;
-import cabmanagement.model.Cab;
-import cabmanagement.model.CabManagementEntity;
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author rajeshkumar.yadav
  */
 
 public class CabBookingController {
-    
-    List<CabManagementEntity> onBoardedCabs;
-    List<CabManagementEntity> onBoardedCity;
-    List<CabManagementEntity> registeredUser;
-    OnBoard onBoardUser;
-    OnBoard onBoardCity;
-    OnBoard onBoardCab;
-    
-    public CabBookingController(){
-        onBoardedCabs       = new ArrayList<>();
-        onBoardedCity       = new ArrayList<>();
-        registeredUser      = new ArrayList<>();
-        onBoardUser         = new RegisterUser();
-        onBoardCity         = new OnBoardCity();
-        onBoardCab          = new OnBoardCab();
+   
+   CabManager cabManager;
+   CityManager cityManager;
+   UserManager userManager;
+   TripManager tripManager;
+
+    public CabBookingController() {
+        cabManager  = new CabManager();
+        cityManager = new CityManager();
+        userManager = new UserManager();
+        tripManager = new TripManager();
     }
 
-    public List<CabManagementEntity> getOnBoardedCabs() {
-        return onBoardedCabs;
+    public CabManager getCabManager() {
+        return cabManager;
     }
 
-    public void setOnBoardedCabs(List<CabManagementEntity> onBoardedCabs) {
-        this.onBoardedCabs = onBoardedCabs;
+    public void setCabManager(CabManager cabManager) {
+        this.cabManager = cabManager;
     }
 
-    public List<CabManagementEntity> getOnBoardedCity() {
-        return onBoardedCity;
+    public CityManager getCityManager() {
+        return cityManager;
     }
 
-    public void setOnBoardedCity(List<CabManagementEntity> onBoardedCity) {
-        this.onBoardedCity = onBoardedCity;
+    public void setCityManager(CityManager cityManager) {
+        this.cityManager = cityManager;
     }
 
-    public List<CabManagementEntity> getRegisteredUser() {
-        return registeredUser;
+    public UserManager getUserManager() {
+        return userManager;
     }
 
-    public void setRegisteredUser(List<CabManagementEntity> registeredUser) {
-        this.registeredUser = registeredUser;
+    public void setUserManager(UserManager userManager) {
+        this.userManager = userManager;
     }
 
-    public OnBoard getOnBoardUser() {
-        return onBoardUser;
+    public TripManager getTripManager() {
+        return tripManager;
     }
 
-    public void setOnBoardUser(OnBoard onBoardUser) {
-        this.onBoardUser = onBoardUser;
+    public void setTripManager(TripManager tripManager) {
+        this.tripManager = tripManager;
     }
-
-    public OnBoard getOnBoardCity() {
-        return onBoardCity;
-    }
-
-    public void setOnBoardCity(OnBoard onBoardCity) {
-        this.onBoardCity = onBoardCity;
-    }
-
-    public OnBoard getOnBoardCab() {
-        return onBoardCab;
-    }
-
-    public void setOnBoardCab(OnBoard onBoardCab) {
-        this.onBoardCab = onBoardCab;
-    }
-    
-    
    
 }

@@ -13,40 +13,49 @@ import java.util.Date;
  */
 public class CabInfo {
     
-    String id;
-    CabStatus status;
-    Date timeStamp;
+    String cabId;
+    CabStatus cabStatus;
+    Date time;
+    Trip trip;
     String currentCity;
 
-    public CabInfo(String id, CabStatus status, Date timeStamp, String currentCity) {
-        this.id = id;
-        this.status = status;
-        this.timeStamp = timeStamp;
+    public CabInfo(CabStatus cabStatus, Date time, Trip trip, String currentCity) {
+        this.cabStatus = cabStatus;
+        this.time = time;
+        this.trip = trip;
         this.currentCity = currentCity;
     }
 
-    public String getId() {
-        return id;
+    public Trip getTrip() {
+        return trip;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setTrip(Trip trip) {
+        this.trip = trip;
+    }
+    
+    public String getCabId() {
+        return cabId;
     }
 
-    public CabStatus getStatus() {
-        return status;
+    public void setCabId(String cabId) {
+        this.cabId = cabId;
     }
 
-    public void setStatus(CabStatus status) {
-        this.status = status;
+    public CabStatus getCabStatus() {
+        return cabStatus;
     }
 
-    public Date getTimeStamp() {
-        return timeStamp;
+    public void setCabStatus(CabStatus cabStatus) {
+        this.cabStatus = cabStatus;
     }
 
-    public void setTimeStamp(Date timeStamp) {
-        this.timeStamp = timeStamp;
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     public String getCurrentCity() {
@@ -56,8 +65,5 @@ public class CabInfo {
     public void setCurrentCity(String currentCity) {
         this.currentCity = currentCity;
     }
-    
-    
-    
     
 }

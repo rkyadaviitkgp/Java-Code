@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cabmanagement;
-
-import cabmanagement.model.Cab;
-import java.util.List;
+package cabmanagement.model;
 
 /**
  *
  * @author rajeshkumar.yadav
  */
-public class CityCab {
-    
-    String cityId;
-    List<Cab> cabList;
-    
+public interface PaymentType {
+    public boolean pay(double amount);
 }

@@ -11,11 +11,13 @@ import java.util.List;
  *
  * @author rajeshkumar.yadav
  */
-public class City extends CabManagementEntity{
+public class City {
     
     String Name;
     String id;
     String state;
+    
+    
 
     public String getName() {
         return Name;

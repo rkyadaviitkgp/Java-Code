@@ -5,22 +5,23 @@
  */
 package cabmanagement.model;
 
+import cabmanagement.utility.UniqueIdGenerator;
 import java.util.Date;
 
 /**
  *
  * @author rajeshkumar.yadav
  */
-public class User extends CabManagementEntity{
+public class User {
     
     String id;
     String displayName;
     String userName;
     String password;
-    Date dateOfBirth;
+    Date   dateOfBirth;
 
-    public User(String id, String displayName, String userName, String password, Date dateOfBirth) {
-        this.id = id;
+    public User( String displayName, String userName, String password, Date dateOfBirth) {
+        this.id = "user" + UniqueIdGenerator.generateUniqueId();
         this.displayName = displayName;
         this.userName = userName;
         this.password = password;

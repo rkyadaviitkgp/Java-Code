@@ -5,10 +5,20 @@
  */
 package cabmanagement.model;
 
+import java.util.Date;
+
 /**
  *
  * @author rajeshkumar.yadav
  */
-public class CabManagementEntity {
+public class Transaction {
+    
+    String transactionId;
+    Date transactionDate;
+    double amount;
+    Booking bookingId;
+    TransactionStatus transactionStatus;
+    PaymentType paymentType;
+    
     
 }

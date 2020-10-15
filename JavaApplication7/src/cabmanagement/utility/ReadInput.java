@@ -21,43 +21,35 @@ public class ReadInput {
     }
     
     public int readInteger() {
-        String val = "";
-        try {
-            val = br.readLine();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            return 0;
-        }
+        String val = readString();
         return Integer.parseInt(val);
     }
     
     public char readChar() {
-        int val = 0;
-        try {
-            val = br.read();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-        return (char) val;
+        String val = readString();
+        if(val.length() > 0)
+        return val.charAt(0);
+        else
+            return '0';
     }
     
     public long readLong() {
-        String val = "";
-        try {
-            val = br.readLine();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        String val = readString();
         return Long.getLong(val);
     }
     
-    public void readIntegerArray(int[] arr){
+    public String readString(){
         String val = "";
         try {
             val = br.readLine();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        return val;
+    }
+    
+    public void readIntegerArray(int[] arr){
+        String val = readString();
         StringTokenizer st = new StringTokenizer(val, " ");
         int  i = 0;
         while(st.hasMoreElements()){
@@ -66,12 +58,7 @@ public class ReadInput {
     }
     
     public void readStringArray(){
-        String val = "";
-        try {
-            val = br.readLine();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        String val = readString();
         st = new StringTokenizer(val, " ");
     }
     

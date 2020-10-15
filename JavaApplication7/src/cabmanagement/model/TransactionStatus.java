@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cabmanagement.controller;
+package cabmanagement.model;
 
-import cabmanagement.model.CabManagementEntity;
+import org.omg.PortableInterceptor.SUCCESSFUL;
 
 /**
  *
  * @author rajeshkumar.yadav
  */
-public interface OnBoard {
-    public CabManagementEntity onBoard(String configurationFileName);
+public enum TransactionStatus {
+    SUCCESSFUL, FAILED, PROGRESS, CANCELLED;
 }

@@ -6,6 +6,7 @@
 package cabmanagement.model;
 
 import java.util.Date;
+import java.util.Random;
 
 /**
  *
@@ -13,17 +14,32 @@ import java.util.Date;
  */
 public class Booking {
     
-    String id;
+    String bookingId;
     Date bookingdate;
+    Date startTime;
+    Date endTime;
     String startCityId;
     String endCityId;
     String userId;
+    String transactionId;
 
-    public Booking(Date bookingdate, String startCityId, String endCityId, String userId) {
+    public Booking(Date bookingdate, Date startTime, Date endTime, String startCityId, String endCityId, String userId, String transactionId) {
+        this.bookingId = "booking" + new Random().ints(1000);
         this.bookingdate = bookingdate;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.startCityId = startCityId;
         this.endCityId = endCityId;
         this.userId = userId;
+        this.transactionId = transactionId;
+    }
+
+    public String getBookingId() {
+        return bookingId;
+    }
+
+    public void setBookingId(String bookingId) {
+        this.bookingId = bookingId;
     }
 
     public Date getBookingdate() {
@@ -57,4 +73,10 @@ public class Booking {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "Booking{" + "bookingId=" + bookingId + ", bookingdate=" + bookingdate + ", startTime=" + startTime + ", endTime=" + endTime + ", startCityId=" + startCityId + ", endCityId=" + endCityId + ", userId=" + userId + ", transactionId=" + transactionId + '}';
+    }
+
 }

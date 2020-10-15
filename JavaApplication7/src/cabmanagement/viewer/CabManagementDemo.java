@@ -6,8 +6,13 @@
 package cabmanagement.viewer;
 
 import cabmanagement.controller.CabBookingController;
+import cabmanagement.model.Booking;
 import cabmanagement.model.Cab;
+import cabmanagement.model.User;
 import cabmanagement.utility.ReadInput;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -27,42 +32,65 @@ public class CabManagementDemo {
         while (true) {
             switch (option) {
                 case 1:
-                    int repeat = 1;
-                    while (repeat == 1) {
+                    User u = null;
+                    boolean repeat = true;
+                    while (repeat) {
                         System.out.println("Enter your option 1: Register Yourself \n2: Login \n");
                         int userOption = inp.readInteger();
+                        String displayName, userName, password, dob;
                         switch (userOption) {
                             case 1:
-                                controller.getRegisteredUser().add(controller.getOnBoardUser().onBoard("inputtext.txt"));
+                                //register a user
+                                displayName = inp.readString();
+                                userName = inp.readString();
+                                password = inp.readString();
+                                dob = inp.readString();
+                                Date d = new Date(dob);
+                                u = new User(displayName, userName, password, d);
+                                controller.getUserManager().registerUser(u);
                                 break;
                             case 2:
-                                
-
-
+                                //login a user
+                                userName = inp.readString();
+                                password = inp.readString();
+                                u = controller.getUserManager().loginUser(userName, password);
+                                repeat = (u == null);
+                                break;
+                            default:
+                                //invalid selection
+                                System.out.println("Invalid Selection. Try again");
                         }
                     }
-
-                    // 1. book a trip 
-                    // 2. onboard a user
+                    System.out.println("You have Loggedin as " + u.getDisplayName());
+                    
+                    // 1. make booking
+                    String startTime, endTime, startCity, endCity;
+                    startTime = inp.readString();
+                    endTime = inp.readString();
+                    startCity = inp.readString();
+                    endCity = inp.readString();
+                    Booking b = new Booking(new Date(), new Date(startTime), new Date(endTime), startCity, endCity, u.getId(), "transactiondummy");
+                    controller.getTripManager().getBookingList().add(b);
+                    controller.getUserManager().addBooking(u.getId(), b);
+                    
                     // 3. check your past bookings
+                    List<Booking> l = controller.getUserManager().getUserBookingHashTable().get(u.getId());
+                    System.out.println(l);
+                    
                     // 4. check your upcoming trips 
+                    //not supported for now
+                    
                     break;
 
                 case 2:
-                    System.out.println("Enter your option 1: onborad a cab \n2: OnBorad a city \n");
-                    int onBoradOption = inp.readInteger();
-                    switch (onBoradOption) {
-                        case 1:
-                            controller.getOnBoardedCabs().add(controller.getOnBoardCab().onBoard("inputfile.text"));
-                            break;
-                        case 2:
-                            controller.getOnBoardedCity().add(controller.getOnBoardCity().onBoard("inputfile.text"));
-                            break;
-                        default:
-                            System.err.println("Invalid option ");
-                    }
-                    // 4. start a trip
-                    break;
+                    // onborad a cab
+                    // onborad a city
+                    // check how long a cab was idle
+                    // schedule a cab for a booking
+                    // change location or state of a cab
+                    // get cab history of a cab
+                    // find city where demand for cab is high and time when demand is high
+                    // complete a trip
                  default:
                      System.err.println("Invalid selection ");
             }
