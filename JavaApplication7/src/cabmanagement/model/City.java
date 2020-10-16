@@ -16,6 +16,17 @@ public class City {
     String Name;
     String id;
     String state;
+
+    public City(String Name, String id, String state) {
+        this.Name = Name;
+        this.id = id;
+        this.state = state;
+    }
+
+    @Override
+    public String toString() {
+        return "City{" + "Name=" + Name + ", id=" + id + ", state=" + state + '}';
+    }
     
     
 

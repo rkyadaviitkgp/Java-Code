@@ -26,6 +26,13 @@ public class CabInfo {
         this.currentCity = currentCity;
     }
 
+    @Override
+    public String toString() {
+        return "CabInfo{" + "cabId=" + cabId + ", cabStatus=" + cabStatus + ", time=" + time + ", trip=" + trip + ", currentCity=" + currentCity + '}';
+    }
+    
+    
+
     public Trip getTrip() {
         return trip;
     }

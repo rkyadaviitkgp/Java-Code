@@ -6,9 +6,13 @@
 package cabmanagement.controller;
 
 import cabmanagement.model.Booking;
+import cabmanagement.model.City;
 import cabmanagement.model.Trip;
+import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -40,7 +44,17 @@ public class TripManager {
         this.tripList = tripList;
     }
     
-    
+    //getDemandedCity
+    public String getDemandedCity(){
+        
+        Hashtable<String, Integer> ht = new Hashtable<>();
+        int max = 0;
+        String cityId = "";
+        for(Booking b : bookingList){
+            
+        }
+        return cityId;
+    }
     
     
 }

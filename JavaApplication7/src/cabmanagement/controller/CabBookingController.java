@@ -5,6 +5,8 @@
  */
 package cabmanagement.controller;
 
+import cabmanagement.model.City;
+
 /**
  *
  * @author rajeshkumar.yadav
@@ -54,6 +56,12 @@ public class CabBookingController {
 
     public void setTripManager(TripManager tripManager) {
         this.tripManager = tripManager;
+    }
+    
+    // get demanded city
+    public City getDemandedCity(){
+        String cityId = tripManager.getDemandedCity();
+        return cityManager.getCity(cityId);
     }
    
 }

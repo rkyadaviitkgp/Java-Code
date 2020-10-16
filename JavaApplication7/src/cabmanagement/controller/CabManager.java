@@ -7,6 +7,8 @@ package cabmanagement.controller;
 
 import cabmanagement.model.Cab;
 import cabmanagement.model.CabInfo;
+import cabmanagement.model.CabStatus;
+import java.util.Date;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,8 +27,16 @@ public class CabManager {
         cabInfoHashTable = new Hashtable<>();
     }
     
+    //get cab history
+    public List<CabInfo> getCabHistory(String cabId)
+    {
+        List<CabInfo> cInfoList = cabInfoHashTable.get(cabId);
+        return cInfoList;
+    }
+    
     //onborad a new cab
-    public boolean registerCab(){
+    public boolean registerCab(Cab c){
+        cabList.add(c);
         return true;
     }
     
@@ -38,6 +48,20 @@ public class CabManager {
     //add a new info
     public boolean addInfo(String cabId, CabInfo info){
         return true;
+    }
+    
+    //get idle time of a cab 
+    public long getIdleTime(String cabId){
+        
+        List<CabInfo> l = getCabHistory(cabId);
+        CabInfo cinfo = l.get(l.size()-1);
+        if(cinfo.getCabStatus() != CabStatus.IDLE){
+            System.out.println("Cab Is " + cinfo.getCabStatus());
+            return 0;
+        }
+        Date d = new Date();
+        return  d.getTime() - cinfo.getTime().getTime();
+        
     }
     
 }

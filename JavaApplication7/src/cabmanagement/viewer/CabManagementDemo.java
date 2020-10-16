@@ -8,6 +8,9 @@ package cabmanagement.viewer;
 import cabmanagement.controller.CabBookingController;
 import cabmanagement.model.Booking;
 import cabmanagement.model.Cab;
+import cabmanagement.model.CabInfo;
+import cabmanagement.model.CabType;
+import cabmanagement.model.City;
 import cabmanagement.model.User;
 import cabmanagement.utility.ReadInput;
 import java.time.LocalDate;
@@ -83,14 +86,44 @@ public class CabManagementDemo {
                     break;
 
                 case 2:
+                    
                     // onborad a cab
+                    String noPlate;
+                    CabType cabType;
+                    noPlate = inp.readString();
+                    cabType = CabType.MEDIUM;
+                    Cab c = new Cab(noPlate, cabType);
+                    controller.getCabManager().registerCab(c);
+                    
                     // onborad a city
+                    String name, id, state;
+                    name = inp.readString();
+                    id = inp.readString();
+                    state = inp.readString();
+                    City city = new City(name, id, state);
+                    controller.getCityManager().addNewCity(city);
+                    
                     // check how long a cab was idle
+                    String cabId;
+                    cabId = inp.readString();
+                    System.out.println(controller.getCabManager().getIdleTime(cabId));
+                    
                     // schedule a cab for a booking
+                    
                     // change location or state of a cab
+                    
+                    
                     // get cab history of a cab
+                    cabId = inp.readString();
+                    List<CabInfo> list = controller.getCabManager().getCabHistory(cabId);
+                    System.out.println(list);
+                    
                     // find city where demand for cab is high and time when demand is high
+                    System.out.println(controller.getDemandedCity());
+                    
                     // complete a trip
+                    
+                    
                  default:
                      System.err.println("Invalid selection ");
             }
